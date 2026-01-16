@@ -9,15 +9,39 @@
         html { scroll-behavior: smooth; }
         .sidebar-link:hover { color: #f97316; }
         .accent-border { border-left: 4px solid #f97316; }
+        /* Smooth transition for the sidebar mobile movement */
+        #sidebar { transition: transform 0.3s ease-in-out; }
     </style>
 </head>
 <body class="bg-zinc-950 text-slate-200">
 
-    <aside class="hidden md:flex fixed left-0 top-0 h-screen w-64 flex-col bg-zinc-900 border-r border-zinc-800 p-8">
-        <div class="mb-10">
-            <h1 class="text-2xl font-bold text-orange-500">KAPIL SINHA</h1>
-            <p class="text-xs text-slate-400 uppercase tracking-widest mt-1">Ph.D. | Building Science</p>
+    <header class="md:hidden flex items-center p-4 bg-zinc-900 border-b border-zinc-800 sticky top-0 z-50">
+        <button id="menu-open" class="text-orange-500 focus:outline-none mr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+        <div class="flex flex-col">
+            <h1 class="text-lg font-bold text-orange-500">KAPIL SINHA</h1>
+            <p class="text-[10px] text-slate-400 uppercase tracking-widest">Ph.D. | Building Science</p>
         </div>
+    </header>
+
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/70 z-[55] hidden opacity-0 transition-opacity duration-300"></div>
+
+    <aside id="sidebar" class="fixed left-0 top-0 h-screen w-64 flex flex-col bg-zinc-900 border-r border-zinc-800 p-8 z-[60] -translate-x-full md:translate-x-0">
+        <div class="mb-10 flex justify-between items-start">
+            <div>
+                <h1 class="text-2xl font-bold text-orange-500">KAPIL SINHA</h1>
+                <p class="text-xs text-slate-400 uppercase tracking-widest mt-1">Ph.D. | Building Science</p>
+            </div>
+            <button id="menu-close" class="md:hidden text-slate-400 hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        
         <nav class="flex flex-col space-y-4 font-medium text-slate-400">
             <a href="#about" class="sidebar-link transition">About</a>
             <a href="#education" class="sidebar-link transition">Education</a>
@@ -26,6 +50,7 @@
             <a href="#skills" class="sidebar-link transition">Technical Skills</a>
             <a href="#publications" class="sidebar-link transition">Publications</a>
         </nav>
+        
         <div class="mt-auto">
             <a href="resume.pdf" class="block w-full text-center py-2 px-4 border border-orange-500 text-orange-500 rounded hover:bg-orange-500 hover:text-white transition text-sm">Download PDF</a>
         </div>
@@ -34,13 +59,13 @@
     <main class="md:ml-64 p-8 md:p-16 max-w-5xl">
         
         <section id="about" class="mb-20">
-            <h2 class="text-orange-500 font-bold tracking-tighter text-sm mb-2">RESEARCH PHILOSOPHY</h2>
+            <h2 class="text-orange-500 font-bold tracking-tighter text-sm mb-2 uppercase">Research Philosophy</h2>
             <p class="text-3xl md:text-4xl font-semibold text-white leading-tight mb-6">
                 Bridging architectural tradition and technology through <span class="text-orange-500">interdisciplinary innovation.</span>
             </p>
             <p class="text-slate-400 max-w-2xl leading-relaxed">
-                As a researcher committed to interdisciplinary innovation, I approach challenges from multiple vantage points to develop practical solutions[cite: 7]. 
-                During my PhD, when faced with a lack of sensors for skin temperature, I expanded into electronics to design and build a custom low-cost sensing kit[cite: 8, 9].
+                As a researcher committed to interdisciplinary innovation, I approach challenges from multiple vantage points to develop practical solutions. 
+                During my PhD, when faced with a lack of sensors for skin temperature, I expanded into electronics to design and build a custom low-cost sensing kit.
             </p>
         </section>
 
@@ -49,113 +74,54 @@
             <div class="space-y-8">
                 <div class="accent-border pl-6">
                     <h4 class="text-lg font-bold text-orange-500">Ph.D. in Architecture and Planning</h4>
-                    <p class="text-white">Indian Institute of Technology Roorkee [cite: 13]</p>
-                    <p class="text-sm text-slate-500 italic">2018 — 2024 [cite: 13]</p>
-                    <p class="text-sm mt-2 text-slate-400">Thesis: "Studies on transient thermo-physiological response of passengers in airport terminal buildings." [cite: 15]</p>
-                </div>
-                <div class="accent-border pl-6 border-zinc-700">
-                    <h4 class="text-lg font-bold">M.Tech in Transportation Systems</h4>
-                    <p class="text-white">IIT Roorkee | CGPA: 9.06 [cite: 22, 25]</p>
-                    <p class="text-sm text-slate-500 italic">2015 — 2017 [cite: 22]</p>
+                    <p class="text-white">Indian Institute of Technology Roorkee</p>
+                    <p class="text-sm text-slate-500 italic">2018 — 2024</p>
+                    <p class="text-sm mt-2 text-slate-400">Thesis: "Studies on transient thermo-physiological response of passengers in airport terminal buildings."</p>
                 </div>
             </div>
         </section>
 
-        <section id="experience" class="mb-20 bg-zinc-900 p-8 rounded-lg border border-zinc-800">
-            <h3 class="text-2xl font-bold text-white mb-6">Current Role</h3>
-            <div>
-                <h4 class="text-xl font-bold text-orange-500">Assistant Professor</h4>
-                <p class="text-white">Chandigarh University, University Institute of Architecture [cite: 29, 31]</p>
-                <p class="text-sm text-slate-500 italic">July 2024 — Present [cite: 30]</p>
-            </div>
-        </section>
-
-        <section id="research" class="mb-20">
-            <h3 class="text-2xl font-bold text-white mb-8">Research & Patent</h3>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="p-6 bg-orange-500/10 border border-orange-500/20 rounded-lg">
-                    <span class="text-orange-500 font-bold text-xs">PATENT NO. 566975</span>
-                    <h4 class="text-white font-bold mt-2">Human Thermal Stress Assessment Kit</h4>
-                    <p class="text-sm text-slate-400 mt-2">Developed a wearable device and method for real-time assessment.</p>
-                </div>
-                <div class="p-6 bg-zinc-900 border border-zinc-800 rounded-lg">
-                    <span class="text-orange-500 font-bold text-xs">CREST BURSARY 2022</span>
-                    <h4 class="text-white font-bold mt-2">University of Bath, UK</h4>
-                    <p class="text-sm text-slate-400 mt-2">Research stay evaluating thermo-physiological responses in terminal buildings[cite: 18, 52, 53].</p>
+        <section id="publications" class="mb-20">
+            <h3 class="text-2xl font-bold text-white mb-8">Selected Publications</h3>
+            <div class="space-y-6" id="pub-container">
+                <div class="pub-item p-6 bg-zinc-900/50 border border-zinc-800 rounded-lg transition-all duration-300" data-category="journal">
+                    <span class="text-[10px] font-bold text-orange-500 uppercase px-2 py-0.5 border border-orange-500/30 rounded">Scopus Indexed Journal</span>
+                    <h4 class="text-white font-medium mt-3">Evaluating the dynamics of occupancy heat gains in a mid-sized airport terminal through agent-based modelling</h4>
+                    <p class="text-sm text-slate-400 mt-2">K. Sinha, N. Ali, E. Rajasekar | <strong>Building and Environment</strong> (2021)</p>
                 </div>
             </div>
         </section>
-
-        <section id="skills" class="mb-20">
-            <h3 class="text-2xl font-bold text-white mb-8">Technical Proficiency</h3>
-            <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 bg-zinc-800 rounded-full text-xs border border-zinc-700">Python </span>
-                <span class="px-3 py-1 bg-zinc-800 rounded-full text-xs border border-zinc-700">EnergyPlus </span>
-                <span class="px-3 py-1 bg-zinc-800 rounded-full text-xs border border-zinc-700">AnyLogic </span>
-                <span class="px-3 py-1 bg-zinc-800 rounded-full text-xs border border-zinc-700">Arduino & Raspberry Pi </span>
-                <span class="px-3 py-1 bg-zinc-800 rounded-full text-xs border border-zinc-700">BIM (Revit/ArchiCAD) </span>
-            </div>
-        </section>
-		<section id="publications" class="mb-20">
-    <h3 class="text-2xl font-bold text-white mb-8">Selected Publications & Research</h3>
-    
-    <div class="flex space-x-4 mb-8">
-        <button onclick="filterPubs('all')" class="pub-filter active text-xs font-bold uppercase tracking-widest text-orange-500 border-b-2 border-orange-500 pb-1">All</button>
-        <button onclick="filterPubs('journal')" class="pub-filter text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-orange-500 transition pb-1">Journals</button>
-        <button onclick="filterPubs('conference')" class="pub-filter text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-orange-500 transition pb-1">Conferences</button>
-    </div>
-
-    <div class="space-y-6" id="pub-container">
-        <div class="pub-item p-6 bg-zinc-900/50 border border-zinc-800 rounded-lg transition-all duration-300" data-category="journal">
-            <span class="text-[10px] font-bold text-orange-500 uppercase px-2 py-0.5 border border-orange-500/30 rounded">Scopus Indexed Journal</span>
-            <h4 class="text-white font-medium mt-3">Evaluating the dynamics of occupancy heat gains in a mid-sized airport terminal through agent-based modelling</h4>
-            <p class="text-sm text-slate-400 mt-2">K. Sinha, N. Ali, E. Rajasekar | <strong>Building and Environment</strong> (2021)</p>
-            <a href="https://doi.org/10.1016/j.buildenv.2021.108147" target="_blank" class="text-xs text-orange-500 mt-3 inline-block hover:underline">View Publication →</a>
-        </div>
-
-        <div class="pub-item p-6 bg-zinc-900/50 border border-zinc-800 rounded-lg transition-all duration-300" data-category="journal">
-            <span class="text-[10px] font-bold text-orange-500 uppercase px-2 py-0.5 border border-orange-500/30 rounded">Scopus Indexed Journal</span>
-            <h4 class="text-white font-medium mt-3">Functional efficiency in airport terminals: A review on Overall and Stratified Service Quality</h4>
-            <p class="text-sm text-slate-400 mt-2">A. Thampan, K. Sinha, B.R. Gurjar, E. Rajasekar | <strong>Journal of Air Transport Management</strong> (2020)</p>
-            <a href="https://doi.org/10.1016/j.jairtraman.2020.101837" target="_blank" class="text-xs text-orange-500 mt-3 inline-block hover:underline">View Publication →</a>
-        </div>
-
-        <div class="pub-item p-6 bg-zinc-900/50 border border-zinc-800 rounded-lg transition-all duration-300" data-category="conference">
-            <span class="text-[10px] font-bold text-slate-500 uppercase px-2 py-0.5 border border-zinc-700 rounded">International Conference</span>
-            <h4 class="text-white font-medium mt-3">An Agent-based dynamic occupancy schedule model for prediction of HVAC energy demand</h4>
-            <p class="text-sm text-slate-400 mt-2">K. Sinha, N. Ali, E. Rajasekar | <strong>IBPSA Rome</strong> (2019)</p>
-            <a href="http://www.ibpsa.org/proceedings/BS2019/BS2019_211133.pdf" target="_blank" class="text-xs text-orange-500 mt-3 inline-block hover:underline">View Proceedings →</a>
-        </div>
-    </div>
-</section>
-
-<script>
-function filterPubs(category) {
-    const items = document.querySelectorAll('.pub-item');
-    const filters = document.querySelectorAll('.pub-filter');
-    
-    // Update active button styles
-    filters.forEach(f => {
-        f.classList.remove('text-orange-500', 'border-orange-500', 'border-b-2');
-        f.classList.add('text-slate-500');
-    });
-    event.currentTarget.classList.add('text-orange-500', 'border-orange-500', 'border-b-2');
-    event.currentTarget.classList.remove('text-slate-500');
-
-    // Filter items
-    items.forEach(item => {
-        if (category === 'all' || item.getAttribute('data-category') === category) {
-            item.style.display = 'block';
-            setTimeout(() => { item.style.opacity = '1'; }, 10);
-        } else {
-            item.style.opacity = '0';
-            setTimeout(() => { item.style.display = 'none'; }, 300);
-        }
-    });
-}
-</script>
-		
 
     </main>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        const openBtn = document.getElementById('menu-open');
+        const closeBtn = document.getElementById('menu-close');
+        const navLinks = document.querySelectorAll('.sidebar-link');
+
+        function toggleMenu() {
+            const isOpen = !sidebar.classList.contains('-translate-x-full');
+            if (isOpen) {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden', 'opacity-0');
+            } else {
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+            }
+        }
+
+        openBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 768) toggleMenu();
+            });
+        });
+    </script>
 </body>
 </html>
