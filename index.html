@@ -3,94 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Interactive CV</title>
+    <title>Dr. Kapil Kumar Sinha | Interactive CV</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-    </style>
 </head>
-<body class="bg-gray-50 text-gray-900 transition-colors duration-300" id="body">
+<body class="bg-slate-50 text-slate-900 font-sans">
 
-    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 py-4 px-8 flex justify-between items-center">
-        <h1 class="font-bold text-xl tracking-tight">PORTFOLIO.</h1>
-        <div class="space-x-6 flex items-center">
-            <a href="#about" class="hover:text-blue-600">About</a>
-            <a href="#projects" class="hover:text-blue-600">Projects</a>
-            <button id="theme-toggle" class="p-2 bg-gray-100 rounded-full">🌙</button>
-        </div>
-    </nav>
-
-    <section id="about" class="h-screen flex flex-col justify-center items-center text-center px-4">
-        <h2 class="text-5xl md:text-7xl font-extrabold mb-4">Hi, I'm <span class="text-blue-600">Your Name</span></h2>
-        <p class="text-xl text-gray-600 max-w-2xl">I build high-performance web experiences with a focus on clean code and interactive design.</p>
+    <header class="h-screen flex flex-col justify-center items-center bg-white px-6 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold text-slate-800">Dr. Kapil Kumar Sinha</h1>
+        <p class="mt-4 text-xl text-blue-600 font-medium">Ph.D., IIT Roorkee | Assistant Professor</p>
+        <p class="mt-2 text-slate-500 max-w-xl">Specializing in Thermal Comfort, Energy Efficiency, and Human-Centric Design.</p>
         <div class="mt-8 space-x-4">
-            <a href="#projects" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition">View My Work</a>
-            <a href="#" class="border border-gray-300 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition">Download CV</a>
+            <a href="#experience" class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition">View Experience</a>
+            <a href="resume.pdf" class="border border-slate-300 px-6 py-3 rounded-md hover:bg-slate-100 transition">Download ATS CV</a>
         </div>
-    </section>
+    </header>
 
-    <section id="projects" class="py-20 bg-white px-8">
-        <div class="max-w-6xl mx-auto">
-            <h3 class="text-3xl font-bold mb-12 text-center">Featured Projects</h3>
-            
-            <div class="flex justify-center space-x-4 mb-10">
-                <button class="filter-btn active bg-blue-100 text-blue-600 px-4 py-2 rounded-full" data-filter="all">All</button>
-                <button class="filter-btn text-gray-500 px-4 py-2" data-filter="design">Design</button>
-                <button class="filter-btn text-gray-500 px-4 py-2" data-filter="tech">Technical</button>
+    <section class="py-16 bg-slate-100 px-6">
+        <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8 text-center">
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <div class="text-3xl mb-2">📜</div>
+                <h3 class="font-bold">Patent Holder</h3>
+                <p class="text-sm text-slate-600">Human Thermal Stress Assessment Wearable Kit (No. 566975)</p>
             </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="project-grid">
-                <div class="project-card border rounded-xl p-6 fade-in" data-category="tech">
-                    <span class="text-xs font-bold text-blue-500 uppercase">Technical</span>
-                    <h4 class="text-xl font-bold mt-2">AI Data Dashboard</h4>
-                    <p class="text-gray-600 mt-2">A real-time analytics platform built with React and Tailwind.</p>
-                </div>
-                <div class="project-card border rounded-xl p-6 fade-in" data-category="design">
-                    <span class="text-xs font-bold text-purple-500 uppercase">Design</span>
-                    <h4 class="text-xl font-bold mt-2">Brand Identity System</h4>
-                    <p class="text-gray-600 mt-2">Visual language and UI kit for a fintech startup.</p>
-                </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <div class="text-3xl mb-2">🌍</div>
+                <h3 class="font-bold">Global Scholar</h3>
+                <p class="text-sm text-slate-600">Visiting Scholar at University of Bath, UK (2022)</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <div class="text-3xl mb-2">🏛️</div>
+                <h3 class="font-bold">WAF Finalist</h3>
+                <p class="text-sm text-slate-600">World Architecture Festival Finalist (Singapore, 2014)</p>
             </div>
         </div>
     </section>
 
-    <script>
-        // 1. Dark Mode Toggle
-        const themeBtn = document.getElementById('theme-toggle');
-        themeBtn.addEventListener('click', () => {
-            document.body.classList.toggle('bg-slate-900');
-            document.body.classList.toggle('text-white');
-            themeBtn.innerText = document.body.classList.contains('bg-slate-900') ? '☀️' : '🌙';
-        });
+    <section class="py-20 px-6 max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold mb-10 border-l-4 border-blue-600 pl-4">Technical Expertise</h2>
+        <div class="flex flex-wrap gap-3">
+            <span class="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm">Python</span>
+            <span class="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm">EnergyPlus</span>
+            <span class="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm">AnyLogic</span>
+            <span class="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm">Rhino-Grasshopper</span>
+            <span class="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm">BIM (Revit/ArchiCAD)</span>
+            <span class="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm">Arduino Prototyping</span>
+        </div>
+    </section>
 
-        // 2. Project Filtering Logic
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const cards = document.querySelectorAll('.project-card');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const filter = btn.getAttribute('data-filter');
-                cards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
-
-        // 3. Scroll Reveal Animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-    </script>
 </body>
 </html>
