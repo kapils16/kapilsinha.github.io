@@ -21,9 +21,9 @@ const RESUME_DATA = {
         { id: "education", label: "Education" },
         { id: "experience", label: "Experience" },
         { id: "research", label: "Research & Patent" },
-        { id: "awards", label: "Honors" },
-        { id: "skills", label: "Technical Skills" },
         { id: "publications", label: "Publications" },
+        { id: "awards", label: "Honors" },
+        { id: "skills", label: "Technical Skills" },       
         { id: "contact", label: "Contact" }
     ],
 
@@ -207,13 +207,13 @@ const RESUME_DATA = {
             items: ["Arduino", "Raspberry Pi", "Node-RED", "3D Printing", "VR Development"]
         },
         {
-            group: "Creative and AI Tools",
-            items: ["Midjourney", "Photoshop", "Illustrator", "InDesign", "After Effects", "Premiere Pro"]
+            group: "Creative Tools",
+            items: ["Photoshop", "Illustrator", "InDesign", "After Effects", "Premiere Pro"]
         },
         {
             group: "Programming",
             items: ["Python"]
-        },
+        }
     ],
 
     publicationFilters: [
