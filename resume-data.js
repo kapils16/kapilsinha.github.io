@@ -21,9 +21,9 @@ const RESUME_DATA = {
         { id: "education", label: "Education" },
         { id: "experience", label: "Experience" },
         { id: "research", label: "Research & Patent" },
-        { id: "awards", label: "Honors" },
-        { id: "skills", label: "Technical Skills" },
         { id: "publications", label: "Publications" },
+        { id: "awards", label: "Honors" },
+        { id: "skills", label: "Technical Skills" },       
         { id: "contact", label: "Contact" }
     ],
 
