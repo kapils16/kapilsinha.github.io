@@ -254,7 +254,7 @@ function renderContactSection(profile, links) {
                     <div class="p-6 md:p-10 grid md:grid-cols-5 gap-8">
                         <div class="md:col-span-2 space-y-5">
                             <div>
-                                <h4 class="text-white text-xl font-bold tracking-tight">${profile.fullName}, ${profile.credential}</h4>
+                                <h4 class="text-white text-xl font-bold tracking-tight">${profile.fullName}</h4>
                                 <p class="text-orange-500/80 mono text-[10px] font-bold uppercase tracking-wider mt-1">${profile.degrees}</p>
                                 <p class="text-slate-500 mono text-[10px] font-bold uppercase tracking-wider mt-1">${profile.roleLine}</p>
                             </div>
