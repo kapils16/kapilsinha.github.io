@@ -92,7 +92,7 @@ body { font-family: 'Inter', sans-serif; }
 #awards article:hover,
 #skills article:hover {
     transform:    translateY(-3px);
-    border-color: #52525b;
+    border-color: var(--accent-warm);
     box-shadow:   0 10px 30px rgba(0, 0, 0, 0.28),
                   0  0   0  1px rgba(249, 115, 22, 0.05);
 }
@@ -114,6 +114,7 @@ body { font-family: 'Inter', sans-serif; }
 }
 #research .group:hover {
     transform:    translateY(-3px);
+    border-color: var(--accent-warm);
     box-shadow:   0 10px 30px rgba(0, 0, 0, 0.28);
 }
 
