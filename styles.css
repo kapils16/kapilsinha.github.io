@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Roboto+Mono:wght@400;500&display=swap');
+
+/* ─── Design tokens ─────────────────────────────────────────── */
+:root {
+    --accent:       #f97316;
+    --accent-soft:  rgba(249, 115, 22, 0.10);
+    --accent-glow:  rgba(249, 115, 22, 0.06);
+    --accent-warm:  #fb923c;
+    --accent-dim:   rgba(249, 115, 22, 0.45);
+    --ease:         cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease-out:     cubic-bezier(0.0,  0.0,  0.2,  1.0);
+    --t-fast:       180ms;
+    --t-base:       250ms;
+    --t-slow:       380ms;
+}
+
+/* ─── Base ───────────────────────────────────────────────────── */
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; }
+.mono { font-family: 'Roboto Mono', monospace; }
+
+/* ─── Sidebar ────────────────────────────────────────────────── */
+#sidebar { transition: transform 0.3s var(--ease); }
+
+.sidebar-link {
+    position: relative;
+    transition: color var(--t-fast) var(--ease), padding-left var(--t-fast) var(--ease);
+}
+.sidebar-link:hover {
+    color: var(--accent-warm);
+    padding-left: 6px;
+}
+
+/* ─── Section headings ───────────────────────────────────────── */
+/* Each section heading warms on hover of its own section only.  */
+#education h3,
+#experience h3,
+#research h3,
+#awards h3,
+#skills h3,
+#publications h3,
+#contact h3 {
+    transition: color var(--t-base) var(--ease);
+}
+#education:hover h3   { color: var(--accent-warm); }
+#experience:hover h3  { color: var(--accent-warm); }
+#research:hover h3    { color: var(--accent-warm); }
+#awards:hover h3      { color: var(--accent-warm); }
+#skills:hover h3      { color: var(--accent-warm); }
+#publications:hover h3{ color: var(--accent-warm); }
+#contact:hover h3     { color: var(--accent-warm); }
+
+/* ─── Education timeline ─────────────────────────────────────── */
+/* Accent border: thickens and brightens; item slides right.     */
+.accent-border {
+    border-left: 3px solid var(--accent);
+    transition:
+        border-left-color  var(--t-base) var(--ease),
+        border-left-width  var(--t-base) var(--ease),
+        transform          var(--t-base) var(--ease);
+}
+
+/* Non-featured items start muted */
+.accent-border.border-zinc-700 {
+    border-left-color: #3f3f46;
+}
+
+/* Hover any education item: reveal + slide */
+#education .accent-border:hover {
+    border-left-color: var(--accent-warm);
+    border-left-width: 5px;
+    transform: translateX(4px);
+}
+
+/* Heading inside hovered education item */
+#education .accent-border:hover h4 {
+    color: var(--accent-warm);
+    transition: color var(--t-base) var(--ease);
+}
+
+/* ─── Cards — experience, awards, skills, internship ────────── */
+#experience article,
+#awards article,
+#skills article {
+    transition:
+        transform      var(--t-base) var(--ease),
+        border-color   var(--t-base) var(--ease),
+        box-shadow     var(--t-base) var(--ease);
+}
+
+#experience article:hover,
+#awards article:hover,
+#skills article:hover {
+    transform:    translateY(-3px);
+    border-color: #52525b;
+    box-shadow:   0 10px 30px rgba(0, 0, 0, 0.28),
+                  0  0   0  1px rgba(249, 115, 22, 0.05);
+}
+
+/* Current-status card gets a warmer top accent on hover */
+#experience > div > article:first-child:hover {
+    border-color: var(--accent-dim);
+    box-shadow:   0 8px 28px rgba(0, 0, 0, 0.28),
+                  0 -1px 0   0 var(--accent-dim);
+}
+
+/* ─── Research cards ─────────────────────────────────────────── */
+#research .group {
+    transition:
+        transform        var(--t-base) var(--ease),
+        border-color     var(--t-base) var(--ease),
+        box-shadow       var(--t-base) var(--ease),
+        background-color var(--t-base) var(--ease);
+}
+#research .group:hover {
+    transform:    translateY(-3px);
+    box-shadow:   0 10px 30px rgba(0, 0, 0, 0.28);
+}
+
+/* ─── Publications — left accent reveal ──────────────────────── */
+/* Replace generic border with a growing left accent line.       */
+.pub-item {
+    border-left: 3px solid transparent;
+    transition:
+        border-left-color  var(--t-base) var(--ease),
+        background-color   var(--t-slow) var(--ease),
+        box-shadow         var(--t-base) var(--ease),
+        opacity            0.3s ease;
+}
+.pub-item:hover {
+    border-left-color: var(--accent);
+    background-color:  rgba(249, 115, 22, 0.03);
+    box-shadow:        0 4px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* Venue tag brightens on pub hover */
+.pub-item:hover span {
+    transition: color var(--t-fast) var(--ease),
+                border-color var(--t-fast) var(--ease);
+}
+
+/* ─── Skills chips ───────────────────────────────────────────── */
+#skills span {
+    transition:
+        color            var(--t-fast) var(--ease),
+        border-color     var(--t-fast) var(--ease),
+        background-color var(--t-fast) var(--ease);
+}
+#skills span:hover {
+    color:            var(--accent-warm);
+    border-color:     rgba(249, 115, 22, 0.35);
+    background-color: rgba(249, 115, 22, 0.06);
+}
+
+/* ─── Contact links ──────────────────────────────────────────── */
+#contact a[href] {
+    transition:
+        border-color     var(--t-base) var(--ease),
+        background-color var(--t-base) var(--ease),
+        box-shadow       var(--t-base) var(--ease);
+}
+#contact a[href]:hover {
+    border-color:     rgba(249, 115, 22, 0.4);
+    background-color: rgba(249, 115, 22, 0.04);
+    box-shadow:       0 4px 18px rgba(0, 0, 0, 0.22);
+}
+
+/* ─── About / hero blueprint grid ───────────────────────────── */
+.blueprint-bg {
+    background-color: #09090b;
+    background-image:
+        linear-gradient(rgba(249, 115, 22, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(249, 115, 22, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* ─── Reduced motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior:         auto          !important;
+        transition-duration:     0.01ms        !important;
+        animation-duration:      0.01ms        !important;
+        animation-iteration-count: 1           !important;
+    }
+}
