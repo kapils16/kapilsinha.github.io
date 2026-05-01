@@ -189,10 +189,7 @@ const RESUME_DATA = {
     ],
 
     skills: [
-        {
-            group: "Programming",
-            items: ["Python"]
-        },
+        
         {
             group: "Building and Simulation",
             items: ["EnergyPlus", "AnyLogic", "TAI Therm", "Climate Consultant", "Rhino-Grasshopper"]
@@ -212,7 +209,11 @@ const RESUME_DATA = {
         {
             group: "Creative and AI Tools",
             items: ["Midjourney", "Photoshop", "Illustrator", "InDesign", "After Effects", "Premiere Pro"]
-        }
+        },
+        {
+            group: "Programming",
+            items: ["Python"]
+        },
     ],
 
     publicationFilters: [
