@@ -15,28 +15,14 @@ const ICONS = {
     profile: `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>`
 };
 
-/* Human thermal diagram remains presentation-only, separate from resume content. */
 function renderThermalDiagram() {
-    return `
-        <svg viewBox="0 0 200 240" class="w-full max-w-[280px] opacity-90 drop-shadow-[0_0_15px_rgba(249,115,22,0.2)]" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 30c-6 0-11 5-11 11s5 11 11 11 11-5 11-11-5-11-11-11zm-25 30c-10 0-18 8-18 18v50h12V80h6v120h20v-60h10v60h20V80h6v48h12V78c0-10-8-18-18-18H75z" fill="none" stroke="#f97316" stroke-width="0.75" stroke-dasharray="4 2"/>
-            <circle cx="100" cy="41" r="2" fill="#f97316" /> <circle cx="100" cy="100" r="2" fill="#f97316" /> <circle cx="130" cy="110" r="2" fill="#f97316" />
-            <line x1="102" y1="41" x2="160" y2="41" stroke="#f97316" stroke-width="0.5" stroke-dasharray="2 1" />
-            <text x="165" y="44" fill="#f97316" class="mono text-[8px] font-bold">BRAIN (Tcr)</text>
-            <line x1="132" y1="110" x2="160" y2="140" stroke="#f97316" stroke-width="0.5" stroke-dasharray="2 1" />
-            <text x="165" y="145" fill="#f97316" class="mono text-[8px] font-bold">SKIN TEMP (Tsk)</text>
-            <path d="M60 90 Q 30 90 30 70" fill="none" stroke="#f97316" stroke-width="0.5" marker-end="url(#arrow)"/>
-            <text x="5" y="65" fill="#f97316" class="mono text-[7px]">CONVECTION (C)</text>
-            <path d="M60 140 Q 30 140 30 160" fill="none" stroke="#f97316" stroke-width="0.5" marker-end="url(#arrow)"/>
-            <text x="5" y="172" fill="#f97316" class="mono text-[7px]">EVAPORATION (E)</text>
-            <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#f97316" /></marker></defs>
-        </svg>`;
+    return RESUME_DATA.about.thermalDiagramSvg;
 }
 
 /* Section renderer for the research philosophy hero. */
 function renderAboutSection(data) {
     return `
-        <section id="about" class="mb-24 relative overflow-hidden rounded-xl border border-zinc-800 blueprint-bg p-8 md:p-12">
+        <section id="about" class="mb-16 relative overflow-hidden rounded-xl border border-zinc-800 blueprint-bg p-8 md:p-12">
             <div class="relative z-10 grid md:grid-cols-5 gap-12 items-center">
                 <div class="md:col-span-3">
                     <h2 class="text-orange-500 font-bold tracking-tighter text-sm mb-4 uppercase mono">${data.eyebrow}</h2>
@@ -54,10 +40,37 @@ function renderAboutSection(data) {
         </section>`;
 }
 
+/* Section renderer for paired research highlights with responsive canvas surfaces. */
+function renderResearchHighlightsSection(data) {
+    return `
+        <section id="research-highlights" class="mb-16">
+            <div class="relative z-10 mb-10 w-full">
+                <h2 class="text-orange-500 font-bold tracking-tighter text-sm mb-4 uppercase mono">${data.eyebrow}</h2>
+                <p class="text-3xl md:text-3xl font-semibold text-white leading-tight">${data.headline}</p>
+            </div>
+            <div class="relative z-10 grid lg:grid-cols-2 gap-6">
+                ${data.panels.map((panel, index) => `
+                    <article class="research-highlight-panel flex flex-col sm:flex-row gap-5 items-center bg-zinc-950/70 border border-zinc-800 rounded-xl p-5 md:p-6">
+                        <div class="min-w-0 flex-1">
+                            <p class="px-3 py-1 bg-orange-500 text-black text-[10px] mono font-bold uppercase tracking-widest mb-3">${panel.tag}</p>
+                            <h3 class="text-white text-xl font-bold leading-tight mb-3">${panel.title}</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-5">${panel.description}</p>
+                            <div class="flex flex-wrap gap-2">
+                                ${panel.metrics.map(metric => `<span class="px-3 py-1 border border-orange-500/20 bg-orange-500/5 text-orange-400 text-[10px] mono uppercase rounded">${metric}</span>`).join("")}
+                            </div>
+                        </div>
+                        <div class="relative w-[220px] h-[220px] shrink-0 rounded-lg border border-orange-500/15 overflow-hidden">
+                            ${panel.svg}
+                        </div>
+                    </article>`).join("")}
+            </div>
+        </section>`;
+}
+
 /* Section renderer for education timeline items. */
 function renderEducationSection(items) {
     return `
-        <section id="education" class="mb-24">
+        <section id="education" class="mb-16">
             <h3 class="text-2xl font-bold text-white mb-10 flex items-center gap-4">Education <span class="h-px flex-1 bg-zinc-800"></span></h3>
             <div class="space-y-8">
                 ${items.map(item => `
@@ -76,7 +89,7 @@ function renderExperienceSection(items, internships) {
     const [currentRole, ...previousRoles] = items;
 
     return `
-        <section id="experience" class="mb-24">
+        <section id="experience" class="mb-16">
             <h3 class="text-2xl font-bold text-white mb-10 flex items-center gap-4">Experience <span class="h-px flex-1 bg-zinc-800"></span></h3>
             <div class="space-y-6">
                 <article class="bg-zinc-900 border border-zinc-800 p-5 md:p-6 rounded-xl">
@@ -119,26 +132,34 @@ function renderExperienceSection(items, internships) {
 /* Section renderer for patents, grants, and research innovation cards. */
 function renderResearchSection(items) {
     return `
-        <section id="research" class="mb-24">
-            <h3 class="text-2xl font-bold text-white mb-10">Research & Innovation</h3>
-            <div class="grid md:grid-cols-2 gap-8">
+        <section id="research" class="mb-16">
+            <h3 class="text-2xl font-bold text-white mb-10 flex items-center gap-4">Patent<span class="h-px flex-1 bg-zinc-800"></span></h3>
+            <div class="grid md:grid-cols-1 gap-8">
                 ${items.map(item => {
                     /* Accent and standard research cards keep their original spacing patterns. */
                     if (item.variant === "accent") {
                         return `
                             <div class="group p-8 bg-orange-500/5 border border-orange-500/20 rounded-xl hover:border-orange-500/50">
-                                <div class="flex justify-between items-start mb-6">
-                                    <span class="px-3 py-1 bg-orange-500 text-black text-[10px] font-bold uppercase mono">${item.tag}</span>
+                                <div class="flex items-start gap-6">
+                                    <div class="flex-1">
+                                        <div class="mb-2">
+                                            <span class="px-3 py-1 bg-orange-500 text-black text-[10px] font-bold uppercase mono">${item.tag}</span>
+                                        </div>
+                                        <h4 class="text-white text-xl font-bold mb-3">${item.title}</h4>
+                                        <p class="text-slate-400 text-sm leading-relaxed">${item.description}</p>
+                                        ${item.meta ? `<p class="text-xs text-slate-500 mono mt-4">${item.meta}</p>` : ""}
+                                    </div>
+                                    ${item.svg ? `<div class="flex-shrink-0 opacity-70">${item.svg}</div>` : ""}
                                 </div>
-                                <h4 class="text-white text-xl font-bold mb-3">${item.title}</h4>
-                                <p class="text-slate-400 text-sm leading-relaxed">${item.description}</p>
-                                ${item.meta ? `<p class="text-xs text-slate-500 mono mt-4">${item.meta}</p>` : ""}
                             </div>`;
                     }
 
                     return `
                         <div class="group p-8 bg-zinc-900 border border-zinc-800 rounded-xl hover:border-zinc-700">
-                            <span class="text-orange-500 font-bold text-xs mono uppercase mb-6 block">${item.tag}</span>
+                            <div class="flex justify-between items-start mb-6">
+                                <span class="text-orange-500 font-bold text-xs mono uppercase">${item.tag}</span>
+                                ${item.svg ? `<span class="flex-shrink-0 opacity-70">${item.svg}</span>` : ""}
+                            </div>
                             <h4 class="text-white text-xl font-bold mb-3">${item.title}</h4>
                             <p class="text-slate-400 text-sm leading-relaxed">${item.description}</p>
                             ${item.meta ? `<p class="text-xs text-slate-500 mono mt-4">${item.meta}</p>` : ""}
@@ -151,8 +172,8 @@ function renderResearchSection(items) {
 /* Section renderer for honors and recognitions from the detailed CV. */
 function renderAwardsSection(items) {
     return `
-        <section id="awards" class="mb-24">
-            <h3 class="text-2xl font-bold text-white mb-10">Honors & Awards</h3>
+        <section id="awards" class="mb-16">
+            <h3 class="text-2xl font-bold text-white mb-10 flex items-center gap-4">Awards<span class="h-px flex-1 bg-zinc-800"></span></h3>
             <div class="grid md:grid-cols-3 gap-6">
                 ${items.map(item => `
                     <article class="p-6 bg-zinc-900/40 border border-zinc-800 rounded-xl">
@@ -167,8 +188,8 @@ function renderAwardsSection(items) {
 /* Section renderer for compact technical skill chips. */
 function renderSkillsSection(items) {
     return `
-        <section id="skills" class="mb-24">
-            <h3 class="text-2xl font-bold text-white mb-10">Technical Proficiency</h3>
+        <section id="skills" class="mb-16">
+            <h3 class="text-2xl font-bold text-white mb-10 flex items-center gap-4">Technical Skills<span class="h-px flex-1 bg-zinc-800"></span></h3>
             <div class="grid md:grid-cols-2 gap-6">
                 ${items.map(group => `
                     <article class="p-6 bg-zinc-900/40 border border-zinc-800 rounded-xl">
@@ -184,8 +205,8 @@ function renderSkillsSection(items) {
 /* Section renderer for publications and filter buttons. */
 function renderPublicationsSection(filters, publications) {
     return `
-        <section id="publications" class="mb-24">
-            <h3 class="text-2xl font-bold text-white mb-10">Selected Publications</h3>
+        <section id="publications" class="mb-16">
+            <h3 class="text-2xl font-bold text-white mb-10 flex items-center gap-4">Publication <span class="h-px flex-1 bg-zinc-800"></span></h3>
             <div class="flex space-x-6 mb-12 border-b border-zinc-800 pb-2">
                 ${filters.map(filter => `<button data-pub-filter="${filter.key}" class="pub-filter ${filter.key === "all" ? "active text-orange-500 border-b-2 border-orange-500" : "text-slate-500 hover:text-orange-500 transition"} text-xs font-bold uppercase tracking-widest pb-2">${filter.label}</button>`).join("")}
             </div>
@@ -204,7 +225,7 @@ function renderPublicationsSection(filters, publications) {
 /* Section renderer for affiliations, invited lectures, languages, and references. */
 function renderAffiliationsSection(data) {
     return `
-        <section id="affiliations" class="mb-24">
+        <section id="affiliations" class="mb-16">
             <h3 class="text-2xl font-bold text-white mb-10 flex items-center gap-4">Affiliations & Academic Service <span class="h-px flex-1 bg-zinc-800"></span></h3>
             <div class="grid lg:grid-cols-2 gap-8">
                 <div class="space-y-6">
@@ -246,7 +267,7 @@ function renderAffiliationsSection(data) {
 /* Section renderer for contact identity and external profile links. */
 function renderContactSection(profile, links) {
     return `
-        <section id="contact" class="mb-24">
+        <section id="contact" class="mb-16">
             <h3 class="text-xl font-bold text-white mb-8 flex items-center gap-3">${ICONS.bolt}<span class="tracking-tight">Contact</span><span class="h-px flex-1 bg-zinc-800"></span></h3>
             <div class="relative group w-full">
                 <div class="absolute -inset-0.5 bg-orange-500/10 rounded-xl blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
@@ -278,6 +299,7 @@ function renderContactSection(profile, links) {
 /* Section registry keeps page ordering data-driven and easy to extend. */
 const SECTION_RENDERERS = {
     about: data => renderAboutSection(data.about),
+    researchHighlights: data => renderResearchHighlightsSection(data.researchHighlights),
     education: data => renderEducationSection(data.education),
     experience: data => renderExperienceSection(data.experience, data.internships),
     research: data => renderResearchSection(data.research),

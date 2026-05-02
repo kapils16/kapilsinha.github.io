@@ -112,6 +112,8 @@ function setupPublicationFilters() {
     });
 }
 
+
+
 /* App bootstrap runs once all static script files have loaded. */
 function initResumePage() {
     renderMobileHeader(RESUME_DATA.profile);
