@@ -146,7 +146,7 @@ function renderResearchSection(items) {
                                             <span class="px-3 py-1 bg-orange-500 text-black text-[10px] font-bold uppercase mono">${item.tag}</span>
                                         </div>
                                         <h4 class="text-white text-xl font-bold mb-3">${item.title}</h4>
-                                        <p class="text-slate-400 text-sm leading-relaxed">${item.description}</p>
+                                        <p class="text-slate-400 text-sm leading-tight">${item.description}</p>
                                         ${item.meta ? `<p class="text-xs text-slate-500 mono mt-4">${item.meta}</p>` : ""}
                                     </div>
                                     ${item.svg ? `<div class="relative w-[220px] h-[220px] shrink-0 overflow-hidden">${item.svg}</div>` : ""}
