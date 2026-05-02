@@ -149,9 +149,9 @@ function renderResearchSection(items) {
                                         <p class="text-slate-400 text-sm leading-relaxed">${item.description}</p>
                                         ${item.meta ? `<p class="text-xs text-slate-500 mono mt-4">${item.meta}</p>` : ""}
                                     </div>
-                                    ${item.svg ? `<div class="flex-shrink-0 opacity-70">${item.svg}</div>` : ""}
+                                    ${item.svg ? `<div class="relative w-[220px] h-[220px] shrink-0 overflow-hidden">${item.svg}</div>` : ""}
                                 </div>
-                            </div>`;
+                            </div>`; 
                     }
 
                     return `
